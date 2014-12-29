@@ -1,0 +1,29 @@
+import random
+ 
+reka = ''
+mozliwosci = ['kamien', 'paper', 'nozyce']
+mozliwosci2 = {'k': 'kamien', 'p': 'papier', 'n': 'nozyce', 'w': 'wyjscie'}
+gracz = 0
+komputer = 0
+ 
+while True:
+  reka = raw_input('kamien (k), papier (p), czy nozyce (n)? {w} aby wyjsc: ')
+  if reka.lower() == 'w':
+    print "Ostateczny wynik to: gracz - %d, komputer - %d" % (gracz, komputer)
+    break
+ 
+  if reka.lower() != 'k' and reka.lower() != 'p' and reka.lower() != 'n':
+    print "Zly wybor, sprobuj ponownie"
+  else:
+    reka = mozliwosci2[reka.lower()]
+    komp_reka = random.choice(mozliwosci)
+    print "Wybor komputera: %s" % komp_reka
+    if reka == komp_reka:
+      print "Remis!  Sprobuj ponownie"
+    elif (reka == 'kamien' and komp_reka != 'nozyce') or (reka == 'papier' and komp_reka != 'kamien') or (reka == 'nozyce' and komp_reka !='papier'):
+      print "Przegrales. Sprobuj ponownie"
+      komputer += 1
+    else:
+      print "Wygrales"
+      gracz += 1
+    print "Punktacja: gracz - %d, komputer - %d" % (gracz, komputer)
